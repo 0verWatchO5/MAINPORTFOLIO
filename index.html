@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Expert | Penetration Tester</title>
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#experience" class="nav-link">Experience</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                </button>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <div class="mobile-nav-inner">
+            <ul>
+                <li><a href="#home" class="mobile-nav-link">Home</a></li>
+                <li><a href="#about" class="mobile-nav-link">About</a></li>
+                <li><a href="#skills" class="mobile-nav-link">Skills</a></li>
+                <li><a href="#projects" class="mobile-nav-link">Projects</a></li>
+                <li><a href="#experience" class="mobile-nav-link">Experience</a></li>
+                <li><a href="#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-nav-socials">
+                <a href="https://linkedin.com/in/mayuresh-chaubal" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/0verWatchO5" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <!-- <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="section">
+        <div class="container">
+            <div class="home-content">
+                <div class="home-text">
+                    <h1 class="glitch-text" >CYBERSECURITY</h1>
+                    <h2>Penetration Testing & Security Assessment</h2>
+                    <p>Securing networks and applications through advanced penetration testing, vulnerability assessment, and security consulting.</p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn primary-btn">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#projects" class="btn secondary-btn">
+                            <span>View Projects</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="home-visual">
+                    <div class="code-container">
+                        <pre><code>
+<span class="code-comment">// Penetration Testing Protocol</span>
+<span class="code-keyword">function</span> <span class="code-function">securityAssessment</span>() {
+  <span class="code-keyword">const</span> <span class="code-variable">target</span> = <span class="code-string">"network.target.com"</span>;
+  <span class="code-keyword">const</span> <span class="code-variable">phases</span> = [
+    <span class="code-string">"reconnaissance"</span>,
+    <span class="code-string">"scanning"</span>,
+    <span class="code-string">"vulnerability-analysis"</span>,
+    <span class="code-string">"exploitation"</span>,
+    <span class="code-string">"post-exploitation"</span>,
+    <span class="code-string">"reporting"</span>
+  ];
+  
+  <span class="code-keyword">return</span> <span class="code-function">executeAssessment</span>(target, phases);
+}
+
+<span class="code-function">securityAssessment</span>();
+                        </code></pre>
+                    </div>
+                    <div class="network-visual">
+                        <canvas id="network-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrows">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Professional Background & Expertise</p>
+            </div>
+            <div class="about-content">
+                <div class="about-img">
+                    <div class="img-container">
+                        <img src="RP2.jpg" alt="Profile Picture">
+                        <div class="img-overlay"></div>
+                    </div>
+                    <div class="experience-badge">
+                        <span class="years">3+</span>
+                        <span class="text">Months<br>Experience</span>
+                    </div>
+                </div>
+                <div class="about-text">
+                    <h3>Mayuresh Chaubal</h3>
+                    <p>I am a dedicated penetration tester with expertise in identifying and exploiting security vulnerabilities in networks, applications, and systems. My approach combines technical knowledge with creative problem-solving to uncover security flaws that automated tools might miss.</p>
+                    <p>With a background in information security and ethical hacking, I help organizations strengthen their security posture by simulating real-world attacks and providing actionable remediation strategies.</p>
+                    <div class="about-info">
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-user-shield"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Specialization</h4>
+                                <p>Network & Web Application Security</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Email</h4>
+                                <p>mayureshchaubal57@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Location</h4>
+                                <p>Mumbai, Maharashtra</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="info-text">
+                                <h4>Education</h4>
+                                <p>BSc in Information Technology</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-cta">
+                        <a href="Mayuresh_Chaubal_Resume.pdf" class="btn primary-btn" download>
+                            <span>Resume</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                        <div class="social-links">
+                            <a href="https://linkedin.com/in/mayuresh-chaubal" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/0verWatchO5" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <!-- <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Skills</h2>
+                <p class="section-subtitle">Technical Expertise & Certifications</p>
+            </div>
+            <div class="skills-content">
+                <div class="skills-tabs">
+                    <button class="tab-btn active" data-target="technical">Technical Skills</button>
+                    <button class="tab-btn" data-target="tools">Tools & Technologies</button>
+                    <button class="tab-btn" data-target="certifications">Certifications</button>
+                </div>
+                <div class="skills-tab-content">
+                    <div class="tab-pane active" id="technical">
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <h4>Network Penetration Testing</h4>
+                                    <span>95%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <h4>Web Application Security</h4>
+                                    <span>90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <h4>Mobile Application Security</h4>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <h4>Cloud Security</h4>
+                                    <span>80%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <h4>Social Engineering</h4>
+                                    <span>85%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-info">
+                                    <h4>Reverse Engineering</h4>
+                                    <span>75%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-level" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tools">
+                        <div class="tools-grid">
+                            <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-terminal"></i>
+                                </div>
+                                <h4>Kali Linux</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <h4>Burp Suite</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h4>Wireshark</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h4>Metasploit</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <h4>Nmap</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h4>OWASP ZAP</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-syringe"></i>
+                                </div>
+                                <h4>SQLMap</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div>
+                            <!-- <div class="tool-item">
+                                <div class="tool-icon">
+                                    <i class="fas fa-cloud"></i>
+                                </div>
+                                <h4>AWS Security Tools</h4>
+                                <div class="tool-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="certifications">
+                        <div class="certifications-grid">
+                            <div class="cert-item">
+                                <div class="cert-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="cert-info">
+                                    <h4>Certified Ethical Hacker (CEH)</h4>
+                                    <p>Nikist</p>
+                                    <span class="cert-date">2025</span>
+                                </div>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="cert-info">
+                                    <h4>Vulnerability Assessment & Penetration Testing(VAPT)</h4>
+                                    <p>Alison</p>
+                                    <span class="cert-date">2025</span>
+                                </div>
+                            </div>
+                            <!-- <div class="cert-item">
+                                <div class="cert-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="cert-info">
+                                    <h4>CompTIA Security+</h4>
+                                    <p>CompTIA</p>
+                                    <span class="cert-date">2019</span>
+                                </div>
+                            </div>
+                            <div class="cert-item">
+                                <div class="cert-icon">
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <div class="cert-info">
+                                    <h4>GIAC Web Application Penetration Tester (GWAPT)</h4>
+                                    <p>SANS Institute</p>
+                                    <span class="cert-date">2022</span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Recent Projects</h2>
+                <p class="section-subtitle">Showcasing My Security Expertise</p>
+            </div>
+            <div class="projects-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="network">Network</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <!-- <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="cloud">Cloud</button> -->
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="network">
+                    <div class="project-img">
+                        <img src="Project1.png" alt="Network Security Assessment">
+                        <div class="project-overlay">
+                            <div class="project-category">Network Security</div>
+                            <a href="#project-modal-1" class="project-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Metasploitable   Network Security Assessment</h3>
+                        <p>Performed  a  penetration  test  on  Metasploitable,  identifying  and exploiting  vulnerabilities.</p>
+                    </div>
+                </div>
+                <div class="project-card" data-category="web">
+                    <div class="project-img">
+                        <img src="Project2.png" alt="Web Application Security">
+                        <div class="project-overlay">
+                            <div class="project-category">Web Security</div>
+                            <a href="#project-modal-2" class="project-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>OWASP Web Application Security Audit</h3>
+                        <p>Conducted  a  black  box  penetration  test  on  OWASP  Juice  Shop.</p>
+                    </div>
+                </div>
+                <div class="project-card" data-category="web">
+                    <div class="project-img">
+                        <img src="Project3.png" alt="Weh Application Security">
+                        <div class="project-overlay">
+                            <div class="project-category">Web Security</div>
+                            <a href="#project-modal-3" class="project-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Acunetix Web Application Security Audit</h3>
+                        <p>I  conducted  a  black  boxpenetration test to assess the security posture of Acunetix.</p>
+                    </div>
+                </div>
+                <!-- <div class="project-card" data-category="network">
+                    <div class="project-img">
+                        <img src="project4.jpg" alt="IoT Security">
+                        <div class="project-overlay">
+                            <div class="project-category">IoT Security</div>
+                            <a href="#project-modal-4" class="project-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>IoT Device Security Assessment</h3>
+                        <p>Security testing on a suite of IoT devices for a smart home manufacturer.</p>
+                    </div>
+                </div>
+                <div class="project-card" data-category="mobile">
+                    <div class="project-img">
+                        <img src="project5.jpg" alt="Mobile App Security">
+                        <div class="project-overlay">
+                            <div class="project-category">Mobile Security</div>
+                            <a href="#project-modal-5" class="project-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Mobile Banking App Security Review</h3>
+                        <p>Comprehensive security assessment of a mobile banking application for Android and iOS.</p>
+                    </div>
+                </div>
+                <div class="project-card" data-category="network">
+                    <div class="project-img">
+                        <img src="project6.jpg" alt="Red Team Exercise">
+                        <div class="project-overlay">
+                            <div class="project-category">Red Team</div>
+                            <a href="#project-modal-6" class="project-link">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Full-Scale Red Team Exercise</h3>
+                        <p>Red team engagement for a healthcare organization with physical and digital attack vectors.</p>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Modals -->
+    <div id="project-modal-1" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h3>Enterprise Network Security Assessment</h3>
+                <div class="modal-category">Network Security</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img src="Project1.png" alt="Network Security Assessment">
+                </div>
+                <div class="modal-description">
+                    <h4>Project Overview</h4>
+                    <p>Performed  a  penetration  test  on  Metasploitable,  identifying  and exploiting  
+                        vulnerabilities  using  Nmap,  Metasploit,  and  other  tools. Conducted  reconnaissance,  
+                        privilege  escalation,  and  post-exploitation analysis in a controlled environment.</p>
+                    
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Performed external and internal network scanning using Nmap and custom scripts</li>
+                        <li>Identified vulnerable services and outdated software</li>
+                        <li>Conducted manual testing to verify findings and eliminate false positives</li>
+                        <li>Exploited vulnerabilities to demonstrate potential impact</li>
+                        <li>Developed detailed remediation recommendations</li>
+                    </ul>
+                    
+                    <!-- <h4>Results</h4>
+                    <p>Discovered 12 critical vulnerabilities, 23 high-risk issues, and numerous medium and low-risk findings. The client implemented all recommended fixes, resulting in a 95% reduction in their attack surface.</p> -->
+                    
+                    <div class="modal-tags">
+                        <span>Network Security</span>
+                        <span>Penetration Testing</span>
+                        <span>Vulnerability Assessment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="project-modal-2" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h3>Enterprise Network Security Assessment</h3>
+                <div class="modal-category">Network Security</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img src="Project2.png" alt="Network Security Assessment">
+                </div>
+                <div class="modal-description">
+                    <h4>Project Overview</h4>
+                    <p>Conducted a comprehensive security assessment of a Fortune 500 company's network infrastructure, identifying critical vulnerabilities in their firewall configuration and internal network segmentation.</p>
+                    
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Performed external and internal network scanning using Nmap and custom scripts</li>
+                        <li>Identified vulnerable services and outdated software</li>
+                        <li>Conducted manual testing to verify findings and eliminate false positives</li>
+                        <li>Exploited vulnerabilities to demonstrate potential impact</li>
+                        <li>Developed detailed remediation recommendations</li>
+                    </ul>
+                    
+                    <h4>Results</h4>
+                    <p>Discovered 12 critical vulnerabilities, 23 high-risk issues, and numerous medium and low-risk findings. The client implemented all recommended fixes, resulting in a 95% reduction in their attack surface.</p>
+                    
+                    <div class="modal-tags">
+                        <span>Network Security</span>
+                        <span>Penetration Testing</span>
+                        <span>Vulnerability Assessment</span>
+                        <span>Firewall Audit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="project-modal-3" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-header">
+                <h3>Enterprise Network Security Assessment</h3>
+                <div class="modal-category">Network Security</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img">
+                    <img src="Project3.png" alt="Network Security Assessment">
+                </div>
+                <div class="modal-description">
+                    <h4>Project Overview</h4>
+                    <p>Conducted a comprehensive security assessment of a Fortune 500 company's network infrastructure, identifying critical vulnerabilities in their firewall configuration and internal network segmentation.</p>
+                    
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Performed external and internal network scanning using Nmap and custom scripts</li>
+                        <li>Identified vulnerable services and outdated software</li>
+                        <li>Conducted manual testing to verify findings and eliminate false positives</li>
+                        <li>Exploited vulnerabilities to demonstrate potential impact</li>
+                        <li>Developed detailed remediation recommendations</li>
+                    </ul>
+                    
+                    <h4>Results</h4>
+                    <p>Discovered 12 critical vulnerabilities, 23 high-risk issues, and numerous medium and low-risk findings. The client implemented all recommended fixes, resulting in a 95% reduction in their attack surface.</p>
+                    
+                    <div class="modal-tags">
+                        <span>Network Security</span>
+                        <span>Penetration Testing</span>
+                        <span>Vulnerability Assessment</span>
+                        <span>Firewall Audit</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">Professional Journey & Achievements</p>
+            </div>
+            <div class="experience-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2025 - Present</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>InfoSec Intern</h3>
+                        <h4>Quasar CyberTech</h4>
+                        <!-- <p>Lead penetration tester for high-profile clients in finance, healthcare, and government sectors. Conduct comprehensive security assessments, red team exercises, and provide strategic security recommendations.</p>
+                        <ul class="timeline-achievements">
+                            <li>Led a team of 5 security professionals on enterprise-wide assessments</li>
+                            <li>Developed custom security testing methodologies for cloud environments</li>
+                            <li>Discovered critical zero-day vulnerability in widely-used financial software</li>
+                            <li>Presented findings at major cybersecurity conferences</li>
+                        </ul> -->
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2025 March</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>PenTesting Intern</h3>
+                        <h4>CyberStriveX</h4>
+                        <!-- <p>Performed web application and network penetration tests, vulnerability assessments, and security code reviews. Developed custom security tools and scripts to automate testing procedures.</p>
+                        <ul class="timeline-achievements">
+                            <li>Conducted over 50 web application security assessments</li>
+                            <li>Created automated security testing framework used company-wide</li>
+                            <li>Reduced average assessment time by 35% through process improvements</li>
+                            <li>Mentored junior security analysts and interns</li>
+                        </ul> -->
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2025 February</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>PenTesting Intern</h3>
+                        <h4>InternIntelligence</h4>
+                        <!-- <p>Conducted internal security assessments, implemented security monitoring solutions, and responded to security incidents. Collaborated with development teams to integrate security into the SDLC.</p>
+                        <ul class="timeline-achievements">
+                            <li>Implemented SIEM solution reducing incident response time by 60%</li>
+                            <li>Developed secure coding guidelines for development teams</li>
+                            <li>Led security awareness training for over 500 employees</li>
+                            <li>Participated in 24/7 security incident response rotation</li>
+                        </ul> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <!-- <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-text">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-bug"></i>
+                    </div>
+                    <div class="stat-number" data-count="1250">0</div>
+                    <div class="stat-text">Vulnerabilities Found</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="stat-number" data-count="85">0</div>
+                    <div class="stat-text">Security Solutions</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" data-count="45">0</div>
+                    <div class="stat-text">Satisfied Clients</div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact Me</h2>
+                <p class="section-subtitle">Let's Discuss Your Security Needs</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <div class="card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3>Location</h3>
+                            <p>Mumbai, Maharashtra</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3>Email</h3>
+                            <p>mayureshchaubal57@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <div class="card-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="card-body">
+                            <h3>Phone</h3>
+                            <p>+91 7021524797</p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <h3>Connect With Me</h3>
+                        <div class="social-icons">
+                            <a href="https://linkedin.com/in/mayuresh-chaubal" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/0verWatchO5" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <!-- <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h3>Send Me a Message</h3>
+                        <p>I'll get back to you as soon as possible</p>
+                    </div>
+                    <div id="form-message" class="form-message"></div>
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <div class="form-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-icon">
+                                <i class="fas fa-pen"></i>
+                            </div>
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-icon">
+                                <i class="fas fa-comment-alt"></i>
+                            </div>
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn primary-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo.png" alt="Logo">
+                    <p>Securing Digital Assets & Networks</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to receive security tips and updates</p>
+                    <form id="newsletter-form">
+                        <div class="newsletter-input">
+                            <input type="email" placeholder="Your Email" required>
+                            <button type="submit">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Cybersecurity Expert. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="https://linkedin.com/in/mayuresh-chaubal" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/0verWatchO5" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <!-- <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> -->
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
