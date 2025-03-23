@@ -1,8 +1,8 @@
 /* Base Styles and Variables */
 :root {
-  --primary-color: #2c3e50;
+  --primary-color: #0077b6;
   --secondary-color: #e74c3c;
-  --accent-color: #3498db;
+  --accent-color: #0077b6;
   --text-color: #333;
   --text-color-light: #666;
   --bg-color: #fff;
@@ -13,7 +13,7 @@
   --transition: all 0.3s ease;
   --section-padding: 100px 0;
   --header-height: 80px;
-  --gradient-primary: linear-gradient(135deg, #2c3e50 0%, #4ca1af 100%);
+  --gradient-primary: linear-gradient(135deg, #0077b6 0%, #4ca1af 100%);
   --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
 }
 
@@ -28,7 +28,7 @@
   --border-color: #333;
   --card-bg: #1e1e1e;
   --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  --gradient-primary: linear-gradient(135deg, #0077b6 60%, #4ca1af 100%);
+  --gradient-primary: linear-gradient(135deg, #0077b6 0%, #4ca1af 100%);
 }
 
 * {
@@ -286,7 +286,7 @@ header.scrolled {
 }
 
 .logo img {
-  height: 80%;
+  height: 100%;
   width: auto;
 }
 
@@ -327,6 +327,7 @@ nav ul li a.active::after {
   align-items: center;
 }
 
+/* Update the theme toggle styles for better mobile display */
 .theme-toggle {
   background: none;
   border: none;
@@ -341,6 +342,7 @@ nav ul li a.active::after {
   border-radius: 50%;
   margin-right: 15px;
   transition: var(--transition);
+  position: relative;
 }
 
 .theme-toggle:hover {
@@ -348,15 +350,14 @@ nav ul li a.active::after {
 }
 
 .fa-moon {
-  display: inline-block;
+  display: block;
+  position: absolute;
 }
 
 .fa-sun {
   display: none;
-}
-
-:root .fa-sun {
-  display: none;
+  position: absolute;
+  color: #f1c40f;
 }
 
 .dark .fa-moon {
@@ -364,8 +365,7 @@ nav ul li a.active::after {
 }
 
 .dark .fa-sun {
-  display: inline-block;
-  color: #f1c40f;
+  display: block;
 }
 
 .menu-toggle {
@@ -489,6 +489,8 @@ nav ul li a.active::after {
   grid-template-columns: 1fr 1fr;
   gap: 50px;
   align-items: center;
+  width: 100%;
+  z-index: 2;
 }
 
 .home-text h1 {
@@ -604,6 +606,7 @@ nav ul li a.active::after {
   height: 400px;
 }
 
+/* Update the code container styling for better text alignment */
 .code-container {
   position: absolute;
   top: 0;
@@ -614,7 +617,7 @@ nav ul li a.active::after {
   border-radius: 10px;
   box-shadow: var(--card-shadow);
   padding: 20px;
-  overflow: hidden;
+  overflow: auto; /* Change from overflow: hidden to auto to allow scrolling */
   z-index: 2;
 }
 
@@ -624,6 +627,13 @@ nav ul li a.active::after {
   font-size: 0.9rem;
   line-height: 1.5;
   overflow-x: auto;
+  padding-bottom: 40px; /* Add padding at the bottom to prevent text from being cut off */
+  text-align: left; /* Explicitly set text alignment to left */
+}
+
+.code-container code {
+  text-align: left; /* Ensure code blocks are also left-aligned */
+  display: block; /* Make sure code takes full width */
 }
 
 .code-comment {
@@ -661,6 +671,7 @@ nav ul li a.active::after {
   height: 100%;
 }
 
+/* Fix the scroll indicator position to prevent overlap with code container */
 .scroll-indicator {
   position: absolute;
   bottom: 30px;
@@ -669,16 +680,10 @@ nav ul li a.active::after {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 3; /* Add z-index to ensure it's above the code container */
 }
 
-.mouse {
-  width: 30px;
-  height: 50px;
-  border: 2px solid var(--text-color);
-  border-radius: 20px;
-  position: relative;
-}
-
+/* Adjust the mouse wheel animation to be more visible */
 .wheel {
   width: 6px;
   height: 6px;
@@ -689,6 +694,17 @@ nav ul li a.active::after {
   left: 50%;
   transform: translateX(-50%);
   animation: scroll 1.5s infinite;
+  z-index: 4; /* Ensure wheel is visible */
+}
+
+/* Add a semi-transparent background to the scroll indicator for better visibility */
+.mouse {
+  width: 30px;
+  height: 50px;
+  border: 2px solid var(--text-color);
+  border-radius: 20px;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5); /* Add semi-transparent background */
 }
 
 @keyframes scroll {
@@ -1769,6 +1785,7 @@ footer {
   .home-content {
     grid-template-columns: 1fr;
     text-align: center;
+    padding-top: 50px; /* Add padding to ensure content is below navbar */
   }
 
   .home-visual {
@@ -1860,6 +1877,60 @@ footer {
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  /* Improve mobile menu toggle spacing */
+  .header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .theme-toggle {
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+  }
+
+  #home {
+    padding-top: calc(var(--header-height) + 30px); /* Increase padding to ensure content is visible */
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .home-content {
+    padding-top: 30px;
+  }
+
+  .home-text h1 {
+    font-size: 2.8rem;
+    margin-top: 20px; /* Ensure heading is visible */
+  }
+
+  .home-visual {
+    height: 300px; /* Reduce height on mobile */
+    margin-bottom: 60px; /* Add margin to prevent overlap with scroll indicator */
+  }
+
+  .scroll-indicator {
+    bottom: 15px; /* Move up slightly on mobile */
+  }
+
+  .code-container {
+    position: relative; /* Change to relative for better mobile display */
+    height: 300px;
+  }
+}
+
+/* Responsive adjustments for mobile */
+@media screen and (max-width: 768px) {
+  .home-visual {
+    height: 300px; /* Reduce height on mobile */
+    margin-bottom: 60px; /* Add margin to prevent overlap with scroll indicator */
+  }
+
+  .scroll-indicator {
+    bottom: 15px; /* Move up slightly on mobile */
+  }
 }
 
 @media screen and (max-width: 576px) {
@@ -1913,6 +1984,31 @@ footer {
 
   .footer-social {
     justify-content: center;
+  }
+
+  #home {
+    padding-top: calc(var(--header-height) + 20px);
+  }
+
+  .home-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .home-text h2 {
+    font-size: 1.3rem;
+  }
+
+  .home-visual {
+    height: 250px;
+  }
+
+  .code-container {
+    height: 250px;
+    padding: 10px;
+  }
+
+  .code-container pre {
+    font-size: 0.8rem;
   }
 }
 
