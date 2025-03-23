@@ -420,7 +420,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Send email using EmailJS
       emailjs
-        .send("service_uxhbwk4", "template_f5xxti7", formData)
+        .send("service_uxhbwk4", "template_rvjfpvg", formData)
         .then((response) => {
           // Show success message
           formMessage.textContent = "Your message has been sent successfully!"
