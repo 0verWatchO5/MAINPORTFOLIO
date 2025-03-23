@@ -1861,6 +1861,10 @@ footer {
   .section {
     padding: 80px 0;
   }
+  
+  .logo img {
+    height: 70%;
+  }
 
   nav {
     display: none;
