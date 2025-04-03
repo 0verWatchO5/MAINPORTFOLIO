@@ -476,5 +476,3 @@ document.addEventListener("DOMContentLoaded", () => {
     animateStats()
   })
 })
-
-```png file="logo.png" url="/placeholder.svg?height=50&width=150";```
