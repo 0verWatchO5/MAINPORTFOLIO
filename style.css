@@ -359,6 +359,9 @@ nav ul li a.active::after {
   position: absolute;
   color: #f1c40f;
 }
+:root .fa-sun {
+  display: none;
+}
 
 .dark .fa-moon {
   display: none;
