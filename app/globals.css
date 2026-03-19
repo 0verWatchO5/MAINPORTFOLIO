@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0a0f1c;
+  --foreground: #e8edf5;
+  --primary: #0077b6;
+  --accent: #e74c3c;
+  --accent-secondary: #f39c12;
+  --surface: #111827;
+  --surface-light: #1e293b;
+  --text-muted: #94a3b8;
+  --glow-primary: rgba(0, 119, 182, 0.4);
+  --glow-accent: rgba(231, 76, 60, 0.4);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-light);
+  --color-text-muted: var(--text-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), "Segoe UI", system-ui, sans-serif;
+}
+
+/* ========== Glitch Text Animation ========== */
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.glitch-text::before {
+  color: var(--accent);
+  z-index: -1;
+  animation: glitch-1 3s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  color: var(--primary);
+  z-index: -2;
+  animation: glitch-2 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+  0%, 10%, 27%, 35%, 52%, 72%, 80%, 100% {
+    transform: none;
+    opacity: 0.8;
+  }
+  7% {
+    transform: translate(2px, 3px) skewX(2deg);
+    opacity: 0.6;
+  }
+  30% {
+    transform: translate(-5px, -2px) skewX(-3deg);
+    opacity: 0.6;
+  }
+  55% {
+    transform: translate(5px, -1px) skewX(1deg);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(-2px, -6px) skewX(-2deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes glitch-2 {
+  0%, 15%, 40%, 60%, 85%, 100% {
+    transform: none;
+    opacity: 0.7;
+  }
+  12% {
+    transform: translate(-3px, 2px) skewX(-1deg);
+    opacity: 0.5;
+  }
+  37% {
+    transform: translate(4px, -3px) skewX(2deg);
+    opacity: 0.5;
+  }
+  57% {
+    transform: translate(-2px, 4px) skewX(-2deg);
+    opacity: 0.5;
+  }
+  82% {
+    transform: translate(3px, -1px) skewX(1deg);
+    opacity: 0.5;
+  }
+}
+
+/* ========== Scroll Indicator ========== */
+@keyframes scroll-wheel {
+  0% {
+    opacity: 1;
+    top: 8px;
+  }
+  100% {
+    opacity: 0;
+    top: 28px;
+  }
+}
+
+@keyframes scroll-arrows {
+  0% {
+    opacity: 0;
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) translate(8px, 8px);
+  }
+}
+
+/* ========== Code Syntax Highlighting ========== */
+.code-comment  { color: #6b7280; }
+.code-keyword  { color: #f472b6; }
+.code-function { color: #60a5fa; }
+.code-variable { color: #fb923c; }
+.code-string   { color: #34d399; }
+
+/* ========== Gradient Borders ========== */
+.gradient-border {
+  position: relative;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 119, 182, 0.1), rgba(231, 76, 60, 0.05));
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 119, 182, 0.5),
+    rgba(231, 76, 60, 0.3),
+    rgba(0, 119, 182, 0.1)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ========== CTA Button Styles ========== */
+.btn-primary {
+  background: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+  box-shadow: 0 4px 20px rgba(231, 76, 60, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 6px 30px rgba(231, 76, 60, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  border: 2px solid var(--accent);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: var(--accent);
+  box-shadow: 0 6px 30px rgba(231, 76, 60, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ========== Subtle Grid Background ========== */
+.hero-grid-bg {
+  background-image:
+    linear-gradient(rgba(0, 119, 182, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 119, 182, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
