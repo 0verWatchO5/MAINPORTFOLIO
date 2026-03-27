@@ -11,7 +11,7 @@ export default async function AdminPage() {
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.email || !isAdminEmail(session.user.email)) {
-    redirect("/momo/login");
+    redirect("/admin/login");
   }
 
   return <AdminDashboard />;

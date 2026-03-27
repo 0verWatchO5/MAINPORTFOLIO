@@ -17,7 +17,7 @@ export default function AdminLoginPage() {
     const result = await signIn("credentials", {
       email,
       password,
-      callbackUrl: "/momo",
+      callbackUrl: "/admin",
       redirect: false,
     });
 
@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
       return;
     }
 
-    window.location.href = result?.url ?? "/momo";
+    window.location.href = result?.url ?? "/admin";
   };
 
   return (
