@@ -18,6 +18,29 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Environment Variables
+
+Create a `.env` file (or copy from `.env.example`) with:
+
+```bash
+MONGODB_URI=your-mongodb-uri
+MONGODB_DB=portfolio
+
+ADMIN_EMAIL=your-admin-email
+ADMIN_PASSWORD=your-admin-password
+
+NEXTAUTH_SECRET=your-random-secret
+NEXTAUTH_URL=http://localhost:3000
+```
+
+## Admin Authentication
+
+- Admin dashboard: `/admin`
+- Admin login: `/admin/login`
+- Uses NextAuth credentials provider with `ADMIN_EMAIL` and `ADMIN_PASSWORD`
+- Public users can still view projects/contact and submit contact forms
+- Admin-only routes are protected for project writes, contact profile updates, and message management
+
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Learn More

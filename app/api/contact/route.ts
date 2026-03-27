@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions, isAdminEmail } from "@/lib/auth";
 import { getDb } from "@/lib/mongodb";
 
 const defaultProfile = {
@@ -32,6 +34,11 @@ export async function GET() {
 
 export async function PUT(request: Request) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email || !isAdminEmail(session.user.email)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const body = (await request.json()) as {
       location?: string;
       email?: string;

@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
 import type { ContactMessage, ContactProfile, Project } from "@/lib/types";
 
 interface ProjectFormState {
@@ -184,10 +185,21 @@ export default function AdminDashboard() {
     <main className="min-h-screen bg-background px-6 py-24">
       <div className="mx-auto max-w-7xl space-y-8">
         <header className="rounded-2xl border border-white/10 bg-surface p-6">
-          <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
-          <p className="mt-2 text-sm text-text-muted">
-            Manage projects and contact data stored in MongoDB.
-          </p>
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
+              <p className="mt-2 text-sm text-text-muted">
+                Manage projects and contact data stored in MongoDB.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={() => void signOut({ callbackUrl: "/admin/login" })}
+              className="rounded-full border border-white/20 px-5 py-2 text-sm text-foreground hover:bg-white/10"
+            >
+              Sign Out
+            </button>
+          </div>
         </header>
 
         <section className="grid gap-8 lg:grid-cols-2">

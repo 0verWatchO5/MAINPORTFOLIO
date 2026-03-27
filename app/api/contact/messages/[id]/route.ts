@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions, isAdminEmail } from "@/lib/auth";
 import { getDb } from "@/lib/mongodb";
 
 export async function DELETE(
@@ -7,6 +9,11 @@ export async function DELETE(
   context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email || !isAdminEmail(session.user.email)) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const { id } = await context.params;
     if (!ObjectId.isValid(id)) {
       return NextResponse.json({ error: "Invalid message id" }, { status: 400 });
