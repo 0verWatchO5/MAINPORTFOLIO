@@ -99,26 +99,34 @@ export default function Navbar() {
           </nav>
 
           {/* Resume CTA */}
-          <a
-            href="/Mayuresh_Chaubal_Resume.pdf"
-            download
-            className="hidden md:inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-colors"
-          >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              viewBox="0 0 24 24"
+          <div className="hidden md:flex items-center gap-2">
+            <a
+              href="/admin"
+              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold rounded-full border border-accent/40 text-accent hover:bg-accent/10 transition-colors"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-              />
-            </svg>
-            Resume
-          </a>
+              Admin
+            </a>
+            <a
+              href="/Mayuresh_Chaubal_Resume.pdf"
+              download
+              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold rounded-full border border-primary/40 text-primary hover:bg-primary/10 transition-colors"
+            >
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2}
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
+                />
+              </svg>
+              Resume
+            </a>
+          </div>
 
           {/* Mobile toggle */}
           <button
@@ -181,6 +189,12 @@ export default function Navbar() {
                     {item.label}
                   </motion.a>
                 ))}
+                <a
+                  href="/admin"
+                  className="mt-4 flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold rounded-full border border-accent/40 text-accent hover:bg-accent/10 transition-colors"
+                >
+                  Admin Dashboard
+                </a>
                 <a
                   href="/Mayuresh_Chaubal_Resume.pdf"
                   download

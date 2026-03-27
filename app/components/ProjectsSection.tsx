@@ -1,82 +1,65 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "./SectionHeader";
+import type { Project } from "@/lib/types";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  tags: string[];
-  details: string;
-  approach: string[];
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Metasploitable Network Security Assessment",
-    description:
-      "Performed a penetration test on Metasploitable, identifying and exploiting vulnerabilities.",
-    category: "network",
-    tags: ["Network Security", "Penetration Testing", "Vulnerability Assessment"],
-    details:
-      "Performed a penetration test on Metasploitable, identifying and exploiting vulnerabilities using Nmap, Metasploit, and other tools. Conducted reconnaissance, privilege escalation, and post-exploitation analysis in a controlled environment.",
-    approach: [
-      "Performed external and internal network scanning using Nmap and custom scripts",
-      "Identified vulnerable services and outdated software",
-      "Conducted manual testing to verify findings and eliminate false positives",
-      "Exploited vulnerabilities to demonstrate potential impact",
-      "Developed detailed remediation recommendations",
-    ],
-  },
-  {
-    id: 2,
-    title: "OWASP Web Application Security Audit",
-    description:
-      "Conducted a black box penetration test on OWASP Juice Shop.",
-    category: "web",
-    tags: ["Web Application Security", "Penetration Testing", "OWASP"],
-    details:
-      "Performed a black box penetration test on OWASP Juice Shop to evaluate its security posture. Identified vulnerabilities such as SQL Injection, IDOR, and admin panel misconfigurations using Burp Suite and Wireshark.",
-    approach: [
-      "Performed internal network scanning using Nmap",
-      "Identified vulnerable services and outdated technologies",
-      "Conducted manual testing to verify findings and eliminate false positives",
-      "Exploited vulnerabilities to demonstrate potential impact",
-      "Developed detailed remediation recommendations",
-    ],
-  },
-  {
-    id: 3,
-    title: "Acunetix Web Application Security Audit",
-    description:
-      "Conducted a black box penetration test to assess the security posture of Acunetix.",
-    category: "web",
-    tags: ["Web Application Security", "Penetration Testing", "Vulnerability Assessment"],
-    details:
-      "Performed a black box penetration test on Acunetix to evaluate its security posture. Identified security gaps through reconnaissance, vulnerability scanning, and exploit testing.",
-    approach: [
-      "Gathered information using open-source intelligence (OSINT) and network scanning",
-      "Used automated tools to identify potential vulnerabilities and misconfigurations",
-      "Attempted to exploit identified vulnerabilities to assess security defenses",
-      "Evaluated the impact of successful exploits, including access control flaws",
-      "Documented findings, calculated risk ratings, and recommended improvements",
-    ],
-  },
-];
-
-const filters = [
-  { label: "All", value: "all" },
-  { label: "Network", value: "network" },
-  { label: "Web", value: "web" },
-];
+const defaultFilterLabel: Record<string, string> = {
+  network: "Network",
+  web: "Web",
+};
 
 export default function ProjectsSection() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadProjects = async () => {
+      try {
+        const response = await fetch("/api/projects", {
+          signal: controller.signal,
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to load projects");
+        }
+
+        const data = (await response.json()) as Project[];
+        setProjects(data);
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.error(error);
+          setProjects([]);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setLoading(false);
+        }
+      }
+    };
+
+    void loadProjects();
+
+    return () => controller.abort();
+  }, []);
+
+  const filters = useMemo(() => {
+    const categories = Array.from(new Set(projects.map((project) => project.category)));
+    return [
+      { label: "All", value: "all" },
+      ...categories.map((category) => ({
+        label:
+          defaultFilterLabel[category] ??
+          `${category.charAt(0).toUpperCase()}${category.slice(1)}`,
+        value: category,
+      })),
+    ];
+  }, [projects]);
 
   const filtered =
     activeFilter === "all"
@@ -113,10 +96,20 @@ export default function ProjectsSection() {
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
         >
+          {loading && (
+            <div className="col-span-full text-center text-sm text-text-muted py-8">
+              Loading projects...
+            </div>
+          )}
+          {!loading && filtered.length === 0 && (
+            <div className="col-span-full text-center text-sm text-text-muted py-8">
+              No projects found. Add one from the admin panel.
+            </div>
+          )}
           <AnimatePresence mode="popLayout">
             {filtered.map((project) => (
               <motion.div
-                key={project.id}
+                key={project._id}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
