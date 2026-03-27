@@ -1,4 +1,4 @@
-import AdminDashboard from "./momoDashboard";
+import AdminDashboard from "./AdminDashboard";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions, isAdminEmail } from "@/lib/auth";
