@@ -194,7 +194,7 @@ export default function AdminDashboard() {
             </div>
             <button
               type="button"
-              onClick={() => void signOut({ callbackUrl: "/admin/login" })}
+              onClick={() => void signOut({ callbackUrl: "/momo/login" })}
               className="rounded-full border border-white/20 px-5 py-2 text-sm text-foreground hover:bg-white/10"
             >
               Sign Out
