@@ -6,14 +6,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <a href="#home" className="text-xl font-bold text-foreground">
-              <span className="text-primary">&lt;</span>
-              MC
-              <span className="text-accent">/</span>
-              <span className="text-primary">&gt;</span>
+              <span className="text-primary">MC</span>
+              <span className="ml-2 text-xs font-mono font-normal tracking-[0.18em] text-text-muted">
+                GRC
+              </span>
             </a>
             <p className="text-sm text-text-muted mt-3 max-w-xs">
-              Securing digital assets & networks through advanced penetration
-              testing and security consulting.
+              Turning security requirements into trusted, measurable outcomes
+              through governance, risk, and compliance.
             </p>
           </div>
 
@@ -55,7 +55,7 @@ export default function Footer() {
               )}
             </div>
             <p className="text-xs text-text-muted mt-4">
-              🏆 2x National level CTF participant (Top 25)
+              ISO/IEC 27001 · ISO/IEC 42001 · DPDPA
             </p>
           </div>
         </div>

@@ -5,61 +5,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "./SectionHeader";
 
 const tabs = [
-  { id: "technical", label: "Technical Skills" },
-  { id: "tools", label: "Tools & Technologies" },
+  { id: "technical", label: "GRC Practice Areas" },
   { id: "certs", label: "Certifications" },
 ];
 
 const technicalSkills = [
-  "Network Penetration Testing",
-  "Web Application Security",
-  "API Security Testing",
-  "Vulnerability Assessment & Exploitation",
-  "Reverse Engineering",
-  "OWASP Top 10 Analysis",
-  "Endpoint Vulnerability Assessment",
-  "SQL Injection & XSS",
-  "CSRF & IDOR Detection",
-  "Packet Analysis",
-  "API Testing",
-  "Linux Administration",
-];
-
-const tools = [
-  { name: "Burp Suite", icon: "🔍" },
-  { name: "Kali Linux", icon: "🐉" },
-  { name: "Nmap", icon: "📡" },
-  { name: "Metasploit", icon: "💉" },
-  { name: "Wireshark", icon: "🦈" },
-  { name: "OWASP ZAP", icon: "⚡" },
-  { name: "SQLMap", icon: "🗃️" },
-  { name: "Nessus", icon: "🛡️" },
-  { name: "Python", icon: "🐍" },
-  { name: "Bash", icon: "💻" },
-  { name: "Caido", icon: "🔧" },
-  { name: "ZAProxy", icon: "🌐" },
+  "ISO/IEC 27001 Auditing",
+  "ISO/IEC 42001 Auditing",
+  "ISMS Auditing",
+  "AI Governance",
+  "DPDPA (India)",
+  "Risk Assessment & Treatment",
+  "Gap Assessment",
+  "Audit Planning",
+  "Control Mapping",
+  "RBI IS Audits",
+  "CERT-In Compliance",
+  "Compliance Documentation",
 ];
 
 const certifications = [
   {
-    name: "ISO 27001 Lead Auditor",
+    name: "ISO/IEC 42001 Lead Auditor",
     org: "Mastermind",
-    year: "2026",
+    year: "May 2026 – May 2029",
   },
   {
-    name: "Ethical Hacker",
-    org: "CISCO",
-    year: "2025",
-  },
-  {
-    name: "Jr. Penetration Tester",
-    org: "TryHackMe",
-    year: "2025",
-  },
-  {
-    name: "Vulnerability Assessment & Penetration Testing (VAPT)",
-    org: "Alison",
-    year: "2025",
+    name: "ISO/IEC 27001 Lead Auditor",
+    org: "Mastermind",
+    year: "Feb 2026 – Feb 2029",
   },
 ];
 
@@ -67,20 +41,20 @@ export default function SkillsSection() {
   const [activeTab, setActiveTab] = useState("technical");
 
   return (
-    <section id="skills" className="py-24 md:py-32 relative bg-surface/30">
+    <section id="skills" className="editorial-section py-24 md:py-32 relative bg-surface/45">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeader
           title="My Skills"
-          subtitle="Technical expertise, tools, and certifications in cybersecurity"
+          subtitle="The frameworks, practices, and technical foundation behind my GRC work"
         />
 
         {/* Tabs */}
-        <div className="flex justify-center gap-2 mb-12 flex-wrap">
+        <div className="flex justify-start gap-2 mb-12 flex-wrap">
           {tabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`relative px-6 py-2.5 text-sm font-medium rounded-full transition-colors ${
+              className={`relative px-6 py-2.5 text-sm font-medium rounded-full border transition-colors ${
                 activeTab === tab.id
                   ? "text-white"
                   : "text-text-muted hover:text-foreground border border-white/10 hover:border-white/20"
@@ -118,38 +92,10 @@ export default function SkillsSection() {
                   transition={{ delay: i * 0.04, duration: 0.3 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="px-5 py-2.5 rounded-full bg-surface-light/50 border border-white/5 hover:border-primary/25 text-sm font-medium text-foreground hover:text-primary transition-all cursor-default"
+                  className="editorial-card px-5 py-2.5 rounded-full text-sm font-medium text-foreground hover:text-primary transition-all cursor-default"
                 >
                   {skill}
                 </motion.span>
-              ))}
-            </motion.div>
-          )}
-
-          {activeTab === "tools" && (
-            <motion.div
-              key="tools"
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-4xl mx-auto"
-            >
-              {tools.map((tool, i) => (
-                <motion.div
-                  key={tool.name}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.05, duration: 0.3 }}
-                  viewport={{ once: true }}
-                  whileHover={{ y: -4 }}
-                  className="p-4 rounded-xl bg-surface-light/50 border border-white/5 hover:border-primary/20 transition-all text-center group"
-                >
-                  <span className="text-2xl block mb-2">{tool.icon}</span>
-                  <h4 className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {tool.name}
-                  </h4>
-                </motion.div>
               ))}
             </motion.div>
           )}
@@ -171,7 +117,7 @@ export default function SkillsSection() {
                   transition={{ delay: i * 0.08, duration: 0.4 }}
                   viewport={{ once: true }}
                   whileHover={{ x: 6 }}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-surface-light/50 border border-white/5 hover:border-accent/20 transition-all"
+                  className="editorial-card flex items-center gap-4 p-4 rounded-xl"
                 >
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent to-accent-secondary flex items-center justify-center text-white shrink-0">
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">

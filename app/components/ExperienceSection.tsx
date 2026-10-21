@@ -5,59 +5,58 @@ import SectionHeader from "./SectionHeader";
 
 const experiences = [
   {
-    title: "Information Security Officer",
-    company: "Austrange Solutions",
-    period: "Nov 2025 – Present",
-    location: "Mumbai, Maharashtra · Hybrid",
+    title: "GRC Analyst",
+    company: "Securis360 Inc.",
+    period: "Oct 2026 – Present",
+    location: "Thane, Maharashtra · GRC",
     highlights: [
-      "Conducted OWASP Top 10–based web security assessments to identify application vulnerabilities",
-      "Assisted with risk analysis and remediation recommendations for security findings",
-      "Developing an ISO/IEC 27001 aligned ISMS framework to support compliance readiness",
-      "Built a custom Python vulnerability scanner to automate web security checks",
+      "Working across governance, risk, and compliance activities to strengthen organizational security posture",
+      "Supporting risk assessment, control reviews, audit preparation, and evidence-driven compliance readiness",
+      "Applying ISO/IEC 27001, ISO/IEC 42001, and DPDPA perspectives to practical GRC work",
     ],
   },
   {
-    title: "InfoSec Consultant",
-    company: "Quasar CyberTech",
+    title: "Associate Consultant – GRC",
+    company: "QuasarCyberTech",
+    period: "Jun 2026 – Aug 2026",
+    location: "Nashik, Maharashtra · Remote",
+    highlights: [
+      "Conducted RBI IS Audits and GRC assessments for Urban Co-operative Banks",
+      "Prepared RBI and CERT-In compliance checklists, control mappings, and gap assessments",
+      "Reviewed audit evidence, VAPT, asset inventories, access controls, patching, and network security",
+      "Supported ISO 27001 ISMS implementation, asset inventory, and risk documentation",
+    ],
+  },
+  {
+    title: "Information Security Officer",
+    company: "Austrange Solutions",
+    period: "Nov 2025 – Mar 2026",
+    location: "Mumbai, Maharashtra · Hybrid",
+    highlights: [
+      "Assisted with risk analysis and remediation recommendations for security findings",
+      "Developed an ISO/IEC 27001-aligned ISMS framework to support compliance readiness",
+      "Supported security control reviews and documented practical improvement opportunities",
+    ],
+  },
+  {
+    title: "Information Security Consultant",
+    company: "QuasarCyberTech",
     period: "Mar 2025 – Jun 2025",
     location: "Nashik, Maharashtra · Remote",
     highlights: [
-      "Conducted manual web application security assessments aligned with OWASP WSTG",
-      "Developed custom CLI tools to automate Clickjacking detection, Google Dorking, and HTTP security header scanning",
-      "Used custom scripts and tailored Nessus profiles to improve testing depth and accuracy",
-    ],
-  },
-  {
-    title: "PenTesting Intern",
-    company: "CyberStriveX",
-    period: "Mar 2025",
-    location: "Remote",
-    highlights: [
-      "Conducted a black box penetration test to evaluate the security posture of Acunetix",
-      "Identified security gaps and recommended remediation strategies",
-      "Strengthened expertise in ethical hacking, exploit testing, and network security",
-    ],
-  },
-  {
-    title: "PenTesting Intern",
-    company: "InternIntelligence",
-    period: "Feb 2025",
-    location: "Remote",
-    highlights: [
-      "Conducted a black box penetration test on OWASP Juice Shop using Burp Suite & Wireshark",
-      "Reviewed and enhanced Access Control, Data Protection, and Incident Response policies",
-      "Proposed security improvements aligned with ISO 27001 & NIST for compliance and risk management",
+      "Conducted security assessments aligned with OWASP WSTG and documented findings",
+      "Supported risk-focused remediation recommendations and security control reviews",
     ],
   },
 ];
 
 export default function ExperienceSection() {
   return (
-    <section id="experience" className="py-24 md:py-32 relative bg-surface/30">
+    <section id="experience" className="editorial-section py-24 md:py-32 relative bg-surface/45">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeader
           title="Experience"
-          subtitle="Professional journey in cybersecurity & information security"
+          subtitle="Experience across GRC assessments, audits, ISMS implementation, and compliance"
         />
 
         <div className="relative max-w-4xl mx-auto">
@@ -100,7 +99,7 @@ export default function ExperienceSection() {
                   {exp.period}
                 </span>
 
-                <div className="p-5 rounded-2xl bg-surface-light/50 border border-white/5 hover:border-primary/15 transition-all group">
+                <div className="editorial-card p-5 rounded-2xl group">
                   <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                     {exp.title}
                   </h3>

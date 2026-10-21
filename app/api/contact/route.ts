@@ -5,7 +5,7 @@ import { getDb } from "@/lib/mongodb";
 
 const defaultProfile = {
   type: "profile" as const,
-  location: "Mumbai, Maharashtra",
+  location: "Thane, Maharashtra",
   email: "mayureshchaubal57@gmail.com",
   phone: "+91 7021524797",
   linkedin: "https://linkedin.com/in/mayuresh-chaubal",

@@ -117,7 +117,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative">
+    <section id="contact" className="editorial-section py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeader
           title="Get In Touch"
@@ -136,7 +136,7 @@ export default function ContactSection() {
             {contactInfo.map((info) => (
               <div
                 key={info.label}
-                className="flex items-start gap-4 p-4 rounded-xl bg-surface-light/50 border border-white/5 hover:border-primary/15 transition-all"
+                className="editorial-card flex items-start gap-4 p-4 rounded-xl"
               >
                 <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent to-accent-secondary flex items-center justify-center text-white shrink-0">
                   {info.icon}

@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mayuresh Chaubal | Information Security Officer",
+  title: "Mayuresh Chaubal | GRC Analyst",
   description:
-    "Aspiring Information Security professional with hands-on experience in security assessments, vulnerability management, and risk analysis, with a strong focus on implementing ISO/IEC 27001 concepts.",
+    "Mayuresh Chaubal is a GRC Analyst focused on information security governance, risk analysis, compliance readiness, and ISO/IEC 27001-aligned controls.",
 };
 
 export default function RootLayout({

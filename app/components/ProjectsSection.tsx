@@ -6,8 +6,8 @@ import SectionHeader from "./SectionHeader";
 import type { Project } from "@/lib/types";
 
 const defaultFilterLabel: Record<string, string> = {
-  network: "Network",
-  web: "Web",
+  network: "Assessment",
+  web: "Compliance",
 };
 
 export default function ProjectsSection() {
@@ -67,15 +67,15 @@ export default function ProjectsSection() {
       : projects.filter((p) => p.category === activeFilter);
 
   return (
-    <section id="projects" className="py-24 md:py-32 relative">
+    <section id="projects" className="editorial-section py-24 md:py-32 relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeader
-          title="Recent Projects"
-          subtitle="Security assessments and penetration testing engagements"
+          title="Selected Work"
+          subtitle="GRC assessments, compliance documentation, and security governance work"
         />
 
         {/* Filters */}
-        <div className="flex justify-center gap-3 mb-12 flex-wrap">
+        <div className="flex justify-start gap-3 mb-12 flex-wrap">
           {filters.map((f) => (
             <button
               key={f.value}
@@ -117,7 +117,7 @@ export default function ProjectsSection() {
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -6 }}
                 onClick={() => setSelectedProject(project)}
-                className="group cursor-pointer rounded-2xl bg-surface-light/50 border border-white/5 hover:border-primary/20 overflow-hidden transition-all"
+                className="editorial-card group cursor-pointer rounded-2xl overflow-hidden"
               >
                 {/* Color strip */}
                 <div
@@ -138,8 +138,8 @@ export default function ProjectsSection() {
                     }`}
                   >
                     {project.category === "network"
-                      ? "Network Security"
-                      : "Web Security"}
+                      ? "Security Assessment"
+                      : "Compliance Work"}
                   </span>
 
                   <h3 className="text-lg font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
@@ -213,8 +213,8 @@ export default function ProjectsSection() {
                       }`}
                     >
                       {selectedProject.category === "network"
-                        ? "Network Security"
-                        : "Web Security"}
+                        ? "Security Assessment"
+                        : "Compliance Work"}
                     </span>
                     <h3 className="text-2xl font-bold text-foreground">
                       {selectedProject.title}

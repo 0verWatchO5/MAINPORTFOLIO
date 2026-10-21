@@ -67,10 +67,10 @@ export default function Navbar() {
             onClick={(e) => handleClick(e, "#home")}
             className="text-xl font-bold tracking-tight text-foreground hover:text-primary transition-colors"
           >
-            <span className="text-primary">&lt;</span>
-            MC
-            <span className="text-accent">/</span>
-            <span className="text-primary">&gt;</span>
+            <span className="text-primary">MC</span>
+            <span className="ml-2 text-xs font-mono font-normal tracking-[0.18em] text-text-muted">
+              GRC
+            </span>
           </a>
 
           {/* Desktop Nav */}
@@ -100,12 +100,6 @@ export default function Navbar() {
 
           {/* Resume CTA */}
           <div className="hidden md:flex items-center gap-2">
-            <a
-              href="/admin"
-              className="inline-flex items-center gap-2 px-5 py-2 text-sm font-semibold rounded-full border border-accent/40 text-accent hover:bg-accent/10 transition-colors"
-            >
-              Admin
-            </a>
             <a
               href="/Mayuresh_Chaubal_Resume.pdf"
               download
@@ -189,12 +183,6 @@ export default function Navbar() {
                     {item.label}
                   </motion.a>
                 ))}
-                <a
-                  href="/admin"
-                  className="mt-4 flex items-center justify-center gap-2 px-5 py-3 text-sm font-semibold rounded-full border border-accent/40 text-accent hover:bg-accent/10 transition-colors"
-                >
-                  Admin Dashboard
-                </a>
                 <a
                   href="/Mayuresh_Chaubal_Resume.pdf"
                   download
