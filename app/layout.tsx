@@ -15,8 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL ??
-      process.env.NEXTAUTH_URL ??
-      "http://localhost:3000"
+      "https://mayureshchaubal.in"
   ),
   title: "Mayuresh Chaubal | GRC Analyst",
   description:

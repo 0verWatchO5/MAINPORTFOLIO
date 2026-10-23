@@ -28,7 +28,7 @@ MONGODB_DB=portfolio
 
 NEXTAUTH_SECRET=your-random-secret
 NEXTAUTH_URL=http://localhost:3000
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
 ```
 
 ## Admin Authentication
