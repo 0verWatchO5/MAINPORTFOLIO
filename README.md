@@ -26,11 +26,9 @@ Create a `.env` file (or copy from `.env.example`) with:
 MONGODB_URI=your-mongodb-uri
 MONGODB_DB=portfolio
 
-ADMIN_EMAIL=your-admin-email
-ADMIN_PASSWORD=your-admin-password
-
 NEXTAUTH_SECRET=your-random-secret
 NEXTAUTH_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
 
 ## Admin Authentication
@@ -40,6 +38,7 @@ NEXTAUTH_URL=http://localhost:3000
 - Uses NextAuth credentials provider with `ADMIN_EMAIL` and `ADMIN_PASSWORD`
 - Public users can still view projects/contact and submit contact forms
 - Admin-only routes are protected for project writes, contact profile updates, and message management
+- The homepage uses `public/hero-profile.png` as its Open Graph and Twitter share image. Set `NEXT_PUBLIC_SITE_URL` to the public HTTPS URL in production so WhatsApp and other crawlers can fetch the thumbnail.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
