@@ -21,7 +21,7 @@ const infoCards = [
       </svg>
     ),
     label: "Email",
-    value: "mayureshchaubal57@gmail.com",
+    value: "contact.me@mayureshchaubal.in",
   },
   {
     icon: (
@@ -132,7 +132,7 @@ export default function AboutSection() {
                 maturity with clarity and confidence.
               </p>
               <p className="text-text-muted leading-relaxed text-base">
-                I bring a practical focus to ISO/IEC 27001 and ISO/IEC 42001 auditing, ISMS
+                I bring a practical focus to ISO/IEC 27001, ISO/IEC 42001 and ISO/IEC 27701 compliance, auditing, ISMS
                 governance, DPDPA compliance, risk assessment, control mapping, and audit readiness.
               </p>
             </motion.div>

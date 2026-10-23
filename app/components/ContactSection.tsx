@@ -121,7 +121,7 @@ export default function ContactSection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <SectionHeader
           title="Get In Touch"
-          subtitle="Let's discuss your security needs — I'd love to hear from you"
+          subtitle="Let's discuss your security needs. I'd love to hear from you"
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto">

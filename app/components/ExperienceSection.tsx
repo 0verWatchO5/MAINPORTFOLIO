@@ -12,7 +12,7 @@ const experiences = [
     highlights: [
       "Working across governance, risk, and compliance activities to strengthen organizational security posture",
       "Supporting risk assessment, control reviews, audit preparation, and evidence-driven compliance readiness",
-      "Applying ISO/IEC 27001, ISO/IEC 42001, and DPDPA perspectives to practical GRC work",
+      "Applying DPDPA perspectives to practical GRC work",
     ],
   },
   {
