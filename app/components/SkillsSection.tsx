@@ -35,6 +35,11 @@ const certifications = [
     org: "Mastermind",
     year: "Feb 2026 – Feb 2029",
   },
+  {
+    name: "ISO/IEC 27701 Lead Implementer",
+    org: "Mastermind",
+    year: "Oct 2026 – Oct 2029",
+  },
 ];
 
 export default function SkillsSection() {
