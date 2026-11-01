@@ -1,11 +1,21 @@
-export interface Project {
+export interface Blog {
   _id: string;
   title: string;
-  description: string;
-  category: string;
+  slug: string;
+  content: string;
+  coverImage: string;
   tags: string[];
-  details: string;
-  approach: string[];
+  publishedAt: string;
+  order?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface Certification {
+  _id: string;
+  name: string;
+  org: string;
+  year: string;
   order?: number;
   createdAt?: string;
   updatedAt?: string;

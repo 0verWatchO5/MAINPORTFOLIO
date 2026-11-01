@@ -35,7 +35,7 @@ export default function AdminLoginPage() {
       <div className="w-full max-w-md rounded-2xl border border-white/10 bg-surface p-8">
         <h1 className="text-3xl font-bold text-foreground">Admin Login</h1>
         <p className="mt-2 text-sm text-text-muted">
-          Sign in to manage projects and contact data.
+          Sign in to manage blogs, certifications and contact data.
         </p>
 
         <form onSubmit={onSubmit} className="mt-6 space-y-4">

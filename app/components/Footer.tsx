@@ -23,7 +23,7 @@ export default function Footer() {
               Quick Links
             </h4>
             <div className="grid grid-cols-2 gap-2">
-              {["Home", "About", "Skills", "Projects", "Experience", "Contact"].map(
+              {["Home", "About", "Skills", "Blogs", "Experience", "Contact"].map(
                 (link) => (
                   <a
                     key={link}

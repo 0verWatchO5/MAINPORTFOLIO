@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import SectionHeader from "./SectionHeader";
+import type { Certification } from "@/lib/types";
 
 const tabs = [
   { id: "technical", label: "GRC Practice Areas" },
@@ -24,18 +25,21 @@ const technicalSkills = [
   "Compliance Documentation",
 ];
 
-const certifications = [
+const fallbackCertifications: Certification[] = [
   {
+    _id: "fallback-42001",
     name: "ISO/IEC 42001 Lead Auditor",
     org: "Mastermind",
     year: "May 2026 – May 2029",
   },
   {
+    _id: "fallback-27001",
     name: "ISO/IEC 27001 Lead Auditor",
     org: "Mastermind",
     year: "Feb 2026 – Feb 2029",
   },
   {
+    _id: "fallback-27701",
     name: "ISO/IEC 27701 Lead Auditor",
     org: "Mastermind",
     year: "Oct 2026 – Oct 2029",
@@ -44,6 +48,43 @@ const certifications = [
 
 export default function SkillsSection() {
   const [activeTab, setActiveTab] = useState("technical");
+  const [certifications, setCertifications] = useState<Certification[]>([]);
+  const [certificationsLoading, setCertificationsLoading] = useState(true);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadCertifications = async () => {
+      try {
+        const response = await fetch("/api/certifications", {
+          signal: controller.signal,
+          cache: "no-store",
+        });
+        if (!response.ok) {
+          throw new Error("Failed to load certifications");
+        }
+
+        const data: unknown = await response.json();
+        if (!Array.isArray(data)) {
+          throw new Error("Certifications API returned an invalid response");
+        }
+
+        setCertifications(data as Certification[]);
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.error(error);
+          setCertifications(fallbackCertifications);
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setCertificationsLoading(false);
+        }
+      }
+    };
+
+    void loadCertifications();
+    return () => controller.abort();
+  }, []);
 
   return (
     <section id="skills" className="editorial-section py-24 md:py-32 relative bg-surface/45">
@@ -114,7 +155,15 @@ export default function SkillsSection() {
               transition={{ duration: 0.3 }}
               className="max-w-3xl mx-auto space-y-4"
             >
-              {certifications.map((cert, i) => (
+              {certificationsLoading && (
+                <p className="text-center text-sm text-text-muted">Loading certifications...</p>
+              )}
+              {!certificationsLoading && certifications.length === 0 && (
+                <p className="text-center text-sm text-text-muted">
+                  No certifications available.
+                </p>
+              )}
+              {!certificationsLoading && certifications.map((cert, i) => (
                 <motion.div
                   key={cert.name}
                   initial={{ opacity: 0, x: -20 }}

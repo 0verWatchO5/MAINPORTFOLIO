@@ -2,25 +2,39 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
-import type { ContactMessage, ContactProfile, Project } from "@/lib/types";
+import type { Blog, Certification, ContactMessage, ContactProfile } from "@/lib/types";
 
-interface ProjectFormState {
+interface BlogFormState {
   title: string;
-  description: string;
-  category: string;
+  slug: string;
+  content: string;
+  coverImage: string;
   tags: string;
-  details: string;
-  approach: string;
+  publishedAt: string;
   order: number;
 }
 
-const initialProjectForm: ProjectFormState = {
+interface CertificationFormState {
+  name: string;
+  org: string;
+  year: string;
+  order: number;
+}
+
+const initialBlogForm: BlogFormState = {
   title: "",
-  description: "",
-  category: "web",
+  slug: "",
+  content: "",
+  coverImage: "",
   tags: "",
-  details: "",
-  approach: "",
+  publishedAt: new Date().toISOString().slice(0, 10),
+  order: 0,
+};
+
+const initialCertificationForm: CertificationFormState = {
+  name: "",
+  org: "",
+  year: "",
   order: 0,
 };
 
@@ -35,18 +49,41 @@ const initialProfile: ContactProfile = {
 };
 
 export default function AdminDashboard() {
-  const [projects, setProjects] = useState<Project[]>([]);
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [certifications, setCertifications] = useState<Certification[]>([]);
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [profile, setProfile] = useState<ContactProfile>(initialProfile);
-  const [projectForm, setProjectForm] = useState<ProjectFormState>(initialProjectForm);
-  const [editingProjectId, setEditingProjectId] = useState<string | null>(null);
-  const [projectStatus, setProjectStatus] = useState("");
+  const [blogForm, setBlogForm] = useState<BlogFormState>(initialBlogForm);
+  const [editingBlogId, setEditingBlogId] = useState<string | null>(null);
+  const [certificationForm, setCertificationForm] =
+    useState<CertificationFormState>(initialCertificationForm);
+  const [editingCertificationId, setEditingCertificationId] = useState<string | null>(null);
+  const [blogStatus, setBlogStatus] = useState("");
+  const [certificationStatus, setCertificationStatus] = useState("");
   const [contactStatus, setContactStatus] = useState("");
 
-  const loadProjects = async () => {
-    const response = await fetch("/api/projects", { cache: "no-store" });
-    const data = (await response.json()) as Project[];
-    setProjects(data);
+  const loadBlogs = async () => {
+    const response = await fetch("/api/blogs", { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error("Failed to load blogs");
+    }
+    const data: unknown = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error("Blogs API returned an invalid response");
+    }
+    setBlogs(data as Blog[]);
+  };
+
+  const loadCertifications = async () => {
+    const response = await fetch("/api/certifications", { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error("Failed to load certifications");
+    }
+    const data: unknown = await response.json();
+    if (!Array.isArray(data)) {
+      throw new Error("Certifications API returned an invalid response");
+    }
+    setCertifications(data as Certification[]);
   };
 
   const loadContact = async () => {
@@ -65,7 +102,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        await Promise.all([loadProjects(), loadContact()]);
+        await Promise.all([loadBlogs(), loadCertifications(), loadContact()]);
       } catch (error) {
         console.error(error);
       }
@@ -74,27 +111,27 @@ export default function AdminDashboard() {
     void loadData();
   }, []);
 
-  const resetProjectForm = () => {
-    setProjectForm(initialProjectForm);
-    setEditingProjectId(null);
+  const resetBlogForm = () => {
+    setBlogForm(initialBlogForm);
+    setEditingBlogId(null);
   };
 
-  const onSaveProject = async (event: FormEvent<HTMLFormElement>) => {
+  const resetCertificationForm = () => {
+    setCertificationForm(initialCertificationForm);
+    setEditingCertificationId(null);
+  };
+
+  const onSaveBlog = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setProjectStatus("Saving...");
+    setBlogStatus("Saving...");
 
     const payload = {
-      title: projectForm.title,
-      description: projectForm.description,
-      category: projectForm.category,
-      tags: projectForm.tags,
-      details: projectForm.details,
-      approach: projectForm.approach,
-      order: Number(projectForm.order),
+      ...blogForm,
+      order: Number(blogForm.order),
     };
 
-    const url = editingProjectId ? `/api/projects/${editingProjectId}` : "/api/projects";
-    const method = editingProjectId ? "PUT" : "POST";
+    const url = editingBlogId ? `/api/blogs/${editingBlogId}` : "/api/blogs";
+    const method = editingBlogId ? "PUT" : "POST";
 
     const response = await fetch(url, {
       method,
@@ -103,43 +140,150 @@ export default function AdminDashboard() {
     });
 
     if (!response.ok) {
-      setProjectStatus("Failed to save project");
+      setBlogStatus("Failed to save blog");
       return;
     }
 
-    await loadProjects();
-    resetProjectForm();
-    setProjectStatus("Project saved");
+    await loadBlogs();
+    resetBlogForm();
+    setBlogStatus("Blog saved");
   };
 
-  const onEditProject = (project: Project) => {
-    setEditingProjectId(project._id);
-    setProjectForm({
-      title: project.title,
-      description: project.description,
-      category: project.category,
-      tags: project.tags.join(", "),
-      details: project.details,
-      approach: project.approach.join("\n"),
-      order: project.order ?? 0,
+  const onEditBlog = (blog: Blog) => {
+    setEditingBlogId(blog._id);
+    setBlogForm({
+      title: blog.title,
+      slug: blog.slug,
+      content: blog.content,
+      coverImage: blog.coverImage,
+      tags: blog.tags.join(", "),
+      publishedAt: blog.publishedAt,
+      order: blog.order ?? 0,
     });
   };
 
-  const onDeleteProject = async (id: string) => {
-    const response = await fetch(`/api/projects/${id}`, {
-      method: "DELETE",
+  const onDeleteBlog = async (id: string) => {
+    const response = await fetch(`/api/blogs/${id}`, { method: "DELETE" });
+
+    if (!response.ok) {
+      setBlogStatus("Failed to delete blog");
+      return;
+    }
+
+    await loadBlogs();
+    if (editingBlogId === id) {
+      resetBlogForm();
+    }
+    setBlogStatus("Blog deleted");
+  };
+
+  const onMoveBlog = async (id: string, direction: -1 | 1) => {
+    const currentIndex = blogs.findIndex((blog) => blog._id === id);
+    const targetIndex = currentIndex + direction;
+    if (currentIndex < 0 || targetIndex < 0 || targetIndex >= blogs.length) {
+      return;
+    }
+
+    const reordered = [...blogs];
+    [reordered[currentIndex], reordered[targetIndex]] = [
+      reordered[targetIndex],
+      reordered[currentIndex],
+    ];
+    setBlogs(reordered.map((blog, order) => ({ ...blog, order })));
+
+    const response = await fetch("/api/blogs/reorder", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: reordered.map((blog) => blog._id) }),
     });
 
     if (!response.ok) {
-      setProjectStatus("Failed to delete project");
+      await loadBlogs();
+      setBlogStatus("Failed to reorder blogs");
       return;
     }
 
-    await loadProjects();
-    if (editingProjectId === id) {
-      resetProjectForm();
+    setBlogStatus("Blog order updated");
+  };
+
+  const onSaveCertification = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setCertificationStatus("Saving...");
+
+    const url = editingCertificationId
+      ? `/api/certifications/${editingCertificationId}`
+      : "/api/certifications";
+    const response = await fetch(url, {
+      method: editingCertificationId ? "PUT" : "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ...certificationForm,
+        order: Number(certificationForm.order),
+      }),
+    });
+
+    if (!response.ok) {
+      setCertificationStatus("Failed to save certification");
+      return;
     }
-    setProjectStatus("Project deleted");
+
+    await loadCertifications();
+    resetCertificationForm();
+    setCertificationStatus("Certification saved");
+  };
+
+  const onEditCertification = (certification: Certification) => {
+    setEditingCertificationId(certification._id);
+    setCertificationForm({
+      name: certification.name,
+      org: certification.org,
+      year: certification.year,
+      order: certification.order ?? 0,
+    });
+  };
+
+  const onDeleteCertification = async (id: string) => {
+    const response = await fetch(`/api/certifications/${id}`, { method: "DELETE" });
+
+    if (!response.ok) {
+      setCertificationStatus("Failed to delete certification");
+      return;
+    }
+
+    await loadCertifications();
+    if (editingCertificationId === id) {
+      resetCertificationForm();
+    }
+    setCertificationStatus("Certification deleted");
+  };
+
+  const onMoveCertification = async (id: string, direction: -1 | 1) => {
+    const currentIndex = certifications.findIndex((certification) => certification._id === id);
+    const targetIndex = currentIndex + direction;
+    if (currentIndex < 0 || targetIndex < 0 || targetIndex >= certifications.length) {
+      return;
+    }
+
+    const reordered = [...certifications];
+    [reordered[currentIndex], reordered[targetIndex]] = [
+      reordered[targetIndex],
+      reordered[currentIndex],
+    ];
+    setCertifications(reordered.map((certification, order) => ({ ...certification, order })));
+
+    const response = await fetch("/api/certifications/reorder", {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids: reordered.map((certification) => certification._id) }),
+    });
+
+    if (!response.ok) {
+      await loadCertifications();
+      setCertificationStatus("Failed to reorder certifications");
+      return;
+    }
+
+    setCertificationStatus("Certification order updated");
   };
 
   const onSaveContactProfile = async (event: FormEvent<HTMLFormElement>) => {
@@ -189,7 +333,7 @@ export default function AdminDashboard() {
             <div>
               <h1 className="text-3xl font-bold text-foreground">Admin Dashboard</h1>
               <p className="mt-2 text-sm text-text-muted">
-                Manage projects and contact data stored in MongoDB.
+                Manage blogs, certifications and contact data stored in MongoDB.
               </p>
             </div>
             <button
@@ -205,95 +349,143 @@ export default function AdminDashboard() {
         <section className="grid gap-8 lg:grid-cols-2">
           <div className="rounded-2xl border border-white/10 bg-surface p-6">
             <h2 className="text-xl font-semibold text-foreground">
-              {editingProjectId ? "Edit Project" : "Create Project"}
+              {editingBlogId ? "Edit Blog" : "Create Blog"}
             </h2>
             <p className="mt-2 text-xs text-text-muted">
-              Tags should be comma separated. Approach should be one line per step.
+              Write blog content in Markdown. Tags should be comma separated.
             </p>
 
-            <form onSubmit={onSaveProject} className="mt-4 space-y-3">
+            <form onSubmit={onSaveBlog} className="mt-4 space-y-3">
               <input
-                value={projectForm.title}
+                value={blogForm.title}
                 onChange={(e) =>
-                  setProjectForm((prev) => ({ ...prev, title: e.target.value }))
+                  setBlogForm((prev) => ({ ...prev, title: e.target.value }))
                 }
-                placeholder="Title"
+                placeholder="Blog title"
                 required
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
               />
               <input
-                value={projectForm.description}
+                value={blogForm.slug}
                 onChange={(e) =>
-                  setProjectForm((prev) => ({ ...prev, description: e.target.value }))
+                  setBlogForm((prev) => ({ ...prev, slug: e.target.value }))
                 }
-                placeholder="Short description"
+                placeholder="Slug (e.g. iso-27001-audit-guide)"
                 required
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
               />
               <input
-                value={projectForm.category}
+                value={blogForm.coverImage}
                 onChange={(e) =>
-                  setProjectForm((prev) => ({ ...prev, category: e.target.value }))
+                  setBlogForm((prev) => ({ ...prev, coverImage: e.target.value }))
                 }
-                placeholder="Category (web/network)"
-                required
+                placeholder="Cloudinary cover image URL (optional)"
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
               />
               <input
-                value={projectForm.tags}
+                value={blogForm.tags}
                 onChange={(e) =>
-                  setProjectForm((prev) => ({ ...prev, tags: e.target.value }))
+                  setBlogForm((prev) => ({ ...prev, tags: e.target.value }))
                 }
                 placeholder="Tag 1, Tag 2"
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
               />
               <textarea
-                value={projectForm.details}
+                value={blogForm.content}
                 onChange={(e) =>
-                  setProjectForm((prev) => ({ ...prev, details: e.target.value }))
+                  setBlogForm((prev) => ({ ...prev, content: e.target.value }))
                 }
-                placeholder="Detailed overview"
+                placeholder="Write your blog in Markdown"
                 required
-                rows={4}
+                rows={12}
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
               />
               <textarea
-                value={projectForm.approach}
+                value={blogForm.publishedAt}
                 onChange={(e) =>
-                  setProjectForm((prev) => ({ ...prev, approach: e.target.value }))
+                  setBlogForm((prev) => ({ ...prev, publishedAt: e.target.value }))
                 }
-                placeholder="Step one&#10;Step two"
-                rows={5}
+                type="date"
+                required
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
               />
-              <input
-                type="number"
-                value={projectForm.order}
-                onChange={(e) =>
-                  setProjectForm((prev) => ({ ...prev, order: Number(e.target.value) }))
-                }
-                placeholder="Display order"
-                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
-              />
-
               <div className="flex gap-3">
                 <button
                   type="submit"
                   className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white"
                 >
-                  {editingProjectId ? "Update Project" : "Create Project"}
+                  {editingBlogId ? "Update Blog" : "Create Blog"}
                 </button>
-                {editingProjectId && (
+                {editingBlogId && (
                   <button
                     type="button"
-                    onClick={resetProjectForm}
+                    onClick={resetBlogForm}
                     className="rounded-full border border-white/20 px-5 py-2 text-sm text-foreground"
                   >
                     Cancel
                   </button>
                 )}
               </div>
-              {projectStatus && <p className="text-xs text-text-muted">{projectStatus}</p>}
+              {blogStatus && <p className="text-xs text-text-muted">{blogStatus}</p>}
+            </form>
+          </div>
+
+          <div className="rounded-2xl border border-white/10 bg-surface p-6">
+            <h2 className="text-xl font-semibold text-foreground">
+              {editingCertificationId ? "Edit Certification" : "Create Certification"}
+            </h2>
+            <p className="mt-2 text-xs text-text-muted">
+              Add the certification name, issuing organization and validity period.
+            </p>
+
+            <form onSubmit={onSaveCertification} className="mt-4 space-y-3">
+              <input
+                value={certificationForm.name}
+                onChange={(e) =>
+                  setCertificationForm((prev) => ({ ...prev, name: e.target.value }))
+                }
+                placeholder="Certification name"
+                required
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
+              />
+              <input
+                value={certificationForm.org}
+                onChange={(e) =>
+                  setCertificationForm((prev) => ({ ...prev, org: e.target.value }))
+                }
+                placeholder="Issuing organization"
+                required
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
+              />
+              <input
+                value={certificationForm.year}
+                onChange={(e) =>
+                  setCertificationForm((prev) => ({ ...prev, year: e.target.value }))
+                }
+                placeholder="Validity period (e.g. Feb 2026 - Feb 2029)"
+                required
+                className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
+              />
+              <div className="flex gap-3">
+                <button
+                  type="submit"
+                  className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white"
+                >
+                  {editingCertificationId ? "Update Certification" : "Create Certification"}
+                </button>
+                {editingCertificationId && (
+                  <button
+                    type="button"
+                    onClick={resetCertificationForm}
+                    className="rounded-full border border-white/20 px-5 py-2 text-sm text-foreground"
+                  >
+                    Cancel
+                  </button>
+                )}
+              </div>
+              {certificationStatus && (
+                <p className="text-xs text-text-muted">{certificationStatus}</p>
+              )}
             </form>
           </div>
 
@@ -345,33 +537,49 @@ export default function AdminDashboard() {
         </section>
 
         <section className="rounded-2xl border border-white/10 bg-surface p-6">
-          <h2 className="text-xl font-semibold text-foreground">Projects</h2>
+          <h2 className="text-xl font-semibold text-foreground">Certifications</h2>
           <div className="mt-4 overflow-x-auto">
             <table className="w-full text-left text-sm">
               <thead>
                 <tr className="border-b border-white/10 text-text-muted">
-                  <th className="px-3 py-2">Title</th>
-                  <th className="px-3 py-2">Category</th>
+                  <th className="px-3 py-2">Name</th>
+                  <th className="px-3 py-2">Organization</th>
+                  <th className="px-3 py-2">Validity</th>
                   <th className="px-3 py-2">Order</th>
                   <th className="px-3 py-2">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {projects.map((project) => (
-                  <tr key={project._id} className="border-b border-white/5">
-                    <td className="px-3 py-2 text-foreground">{project.title}</td>
-                    <td className="px-3 py-2 text-text-muted">{project.category}</td>
-                    <td className="px-3 py-2 text-text-muted">{project.order ?? 0}</td>
+                {certifications.map((certification) => (
+                  <tr key={certification._id} className="border-b border-white/5">
+                    <td className="px-3 py-2 text-foreground">{certification.name}</td>
+                    <td className="px-3 py-2 text-text-muted">{certification.org}</td>
+                    <td className="px-3 py-2 text-text-muted">{certification.year}</td>
+                    <td className="px-3 py-2 text-text-muted">{(certification.order ?? 0) + 1}</td>
                     <td className="px-3 py-2">
                       <div className="flex gap-2">
                         <button
-                          onClick={() => onEditProject(project)}
+                          onClick={() => void onMoveCertification(certification._id, -1)}
+                          disabled={certification.order === 0}
+                          className="rounded-full border border-white/20 px-3 py-1 text-xs text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                        >
+                          Up
+                        </button>
+                        <button
+                          onClick={() => void onMoveCertification(certification._id, 1)}
+                          disabled={certification.order === certifications.length - 1}
+                          className="rounded-full border border-white/20 px-3 py-1 text-xs text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                        >
+                          Down
+                        </button>
+                        <button
+                          onClick={() => onEditCertification(certification)}
                           className="rounded-full border border-primary/40 px-3 py-1 text-xs text-primary"
                         >
                           Edit
                         </button>
                         <button
-                          onClick={() => void onDeleteProject(project._id)}
+                          onClick={() => void onDeleteCertification(certification._id)}
                           className="rounded-full border border-red-400/40 px-3 py-1 text-xs text-red-400"
                         >
                           Delete
@@ -380,10 +588,74 @@ export default function AdminDashboard() {
                     </td>
                   </tr>
                 ))}
-                {projects.length === 0 && (
+                {certifications.length === 0 && (
                   <tr>
-                    <td className="px-3 py-4 text-text-muted" colSpan={4}>
-                      No projects found.
+                    <td className="px-3 py-4 text-text-muted" colSpan={5}>
+                      No certifications found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section className="rounded-2xl border border-white/10 bg-surface p-6">
+          <h2 className="text-xl font-semibold text-foreground">Blogs</h2>
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b border-white/10 text-text-muted">
+                  <th className="px-3 py-2">Title</th>
+                  <th className="px-3 py-2">Published</th>
+                  <th className="px-3 py-2">Slug</th>
+                  <th className="px-3 py-2">Order</th>
+                  <th className="px-3 py-2">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {blogs.map((blog) => (
+                  <tr key={blog._id} className="border-b border-white/5">
+                    <td className="px-3 py-2 text-foreground">{blog.title}</td>
+                    <td className="px-3 py-2 text-text-muted">{blog.publishedAt}</td>
+                    <td className="px-3 py-2 text-text-muted">{blog.slug}</td>
+                    <td className="px-3 py-2 text-text-muted">{(blog.order ?? 0) + 1}</td>
+                    <td className="px-3 py-2">
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => void onMoveBlog(blog._id, -1)}
+                          disabled={blog.order === 0}
+                          className="rounded-full border border-white/20 px-3 py-1 text-xs text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                        >
+                          Up
+                        </button>
+                        <button
+                          onClick={() => void onMoveBlog(blog._id, 1)}
+                          disabled={blog.order === blogs.length - 1}
+                          className="rounded-full border border-white/20 px-3 py-1 text-xs text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                        >
+                          Down
+                        </button>
+                        <button
+                          onClick={() => onEditBlog(blog)}
+                          className="rounded-full border border-primary/40 px-3 py-1 text-xs text-primary"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={() => void onDeleteBlog(blog._id)}
+                          className="rounded-full border border-red-400/40 px-3 py-1 text-xs text-red-400"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+                {blogs.length === 0 && (
+                  <tr>
+                    <td className="px-3 py-4 text-text-muted" colSpan={5}>
+                      No blogs found.
                     </td>
                   </tr>
                 )}
