@@ -400,7 +400,7 @@ export default function AdminDashboard() {
                 rows={12}
                 className="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground"
               />
-              <textarea
+              <input
                 value={blogForm.publishedAt}
                 onChange={(e) =>
                   setBlogForm((prev) => ({ ...prev, publishedAt: e.target.value }))
