@@ -44,10 +44,9 @@ export async function GET() {
   try {
     const db = await getDb();
     const certificationsCollection = db.collection("certifications");
+    const settingsCollection = db.collection<{ _id: string; createdAt: Date }>("settings");
     const certificationCount = await certificationsCollection.countDocuments();
-    const seedMarker = await db
-      .collection("settings")
-      .findOne({ _id: "certifications-seeded" });
+    const seedMarker = await settingsCollection.findOne({ _id: "certifications-seeded" });
 
     if (certificationCount === 0 && !seedMarker) {
       const now = new Date();
@@ -58,7 +57,7 @@ export async function GET() {
           updatedAt: now,
         }))
       );
-      await db.collection("settings").insertOne({
+      await settingsCollection.insertOne({
         _id: "certifications-seeded",
         createdAt: now,
       });
